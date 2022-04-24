@@ -1,13 +1,14 @@
 package com.github.smkozh.restaurantvoting.model;
 
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
-public class Restaurant extends AbstractNamedEntity{
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
-    private Menu menu;
+@Entity
+@Table(name = "restaurant")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class Restaurant extends AbstractNamedEntity{
 
 }

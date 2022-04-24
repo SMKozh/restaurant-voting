@@ -5,12 +5,23 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
+@Entity
+@Table(name = "menu")
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Menu {
+public class Menu extends AbstractBaseEntity {
 
-    private List<Dish> dishes;
+    @Column(name = "date", nullable = false)
+    @NotNull
+    private LocalDate date;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_id", nullable = false)
+    @NotNull
+    private Restaurant restaurant;
 }

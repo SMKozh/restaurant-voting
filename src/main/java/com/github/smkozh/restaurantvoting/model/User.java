@@ -1,7 +1,6 @@
 package com.github.smkozh.restaurantvoting.model;
 
 import lombok.*;
-import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
