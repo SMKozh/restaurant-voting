@@ -2,7 +2,7 @@ package com.github.smkozh.restaurantvoting.web.restaurant;
 
 import com.github.smkozh.restaurantvoting.model.Menu;
 import com.github.smkozh.restaurantvoting.model.Restaurant;
-import com.github.smkozh.restaurantvoting.repository.menu.MenuRepository;
+import com.github.smkozh.restaurantvoting.repository.menu.CrudMenuRepository;
 import com.github.smkozh.restaurantvoting.repository.restaurant.CrudRestaurantRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class AdminRestaurantController {
     private CrudRestaurantRepository repository;
 
     @Autowired
-    private MenuRepository menuRepository;
+    private CrudMenuRepository crudMenuRepository;
 
     @GetMapping
     public List<Restaurant> getAll() {
@@ -46,7 +46,7 @@ public class AdminRestaurantController {
     @GetMapping("/with-all-menus/{id}")
     public ResponseEntity<Restaurant> getWithMenus(@PathVariable int id) {
         Restaurant restaurant = repository.findById(id).orElse(null);
-        List<Menu> menus = menuRepository.getAllByRestaurantIdOrderByDateDesc(restaurant.getId());
+        List<Menu> menus = crudMenuRepository.getAllByRestaurantIdOrderByDateDesc(restaurant.getId());
         restaurant.setMenus(menus);
         return ResponseEntity.ok().body(restaurant);
     }
@@ -55,7 +55,7 @@ public class AdminRestaurantController {
     @GetMapping("/with-today-menu/{id}")
     public ResponseEntity<Restaurant> getWithTodayMenu(@PathVariable int id) {
         Restaurant restaurant = repository.findById(id).orElse(null);
-        List<Menu> menu = menuRepository.getAllByRestaurantIdAndDate(restaurant.getId(), LocalDate.of(2020, 9, 6));
+        List<Menu> menu = crudMenuRepository.getAllByRestaurantIdAndDate(restaurant.getId(), LocalDate.of(2020, 9, 6));
         restaurant.setMenus(menu);
         return ResponseEntity.ok().body(restaurant);
     }

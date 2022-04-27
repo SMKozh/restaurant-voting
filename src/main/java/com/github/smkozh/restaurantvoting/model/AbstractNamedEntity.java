@@ -1,9 +1,6 @@
 package com.github.smkozh.restaurantvoting.model;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
@@ -14,6 +11,7 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@ToString(callSuper = true)
 public class AbstractNamedEntity extends AbstractBaseEntity {
 
     @NotBlank

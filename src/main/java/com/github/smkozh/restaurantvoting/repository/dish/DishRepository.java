@@ -1,18 +1,19 @@
 package com.github.smkozh.restaurantvoting.repository.dish;
 
 import com.github.smkozh.restaurantvoting.model.Dish;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-import org.springframework.transaction.annotation.Transactional;
 
-@Transactional(readOnly = true)
-public interface DishRepository extends JpaRepository<Dish, Integer> {
+import java.util.List;
 
-    @Modifying
-    @Transactional
-    @Query("DELETE FROM Dish d WHERE d.id=:id")
-    int delete(@Param("id") int id);
+public interface DishRepository {
+    // null if updated dish does not belong to menuId
+    Dish save(Dish dish, int menuId);
 
+    // false if dish does not belong to menuId
+    boolean delete(int id, int menuId);
+
+    // null if dish does not belong to menuId
+    Dish get(int id, int menuId);
+
+    // ORDERED dateTime desc
+    List<Dish> getAll(int menuId);
 }

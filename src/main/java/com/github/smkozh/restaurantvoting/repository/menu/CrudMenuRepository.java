@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Transactional(readOnly = true)
-public interface MenuRepository extends JpaRepository<Menu, Integer> {
+public interface CrudMenuRepository extends JpaRepository<Menu, Integer> {
 
     @EntityGraph(attributePaths = {"dishes"}, type = EntityGraph.EntityGraphType.LOAD)
     List<Menu> getAllByRestaurantIdOrderByDateDesc (int id);
