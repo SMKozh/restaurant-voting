@@ -1,6 +1,8 @@
 package com.github.smkozh.restaurantvoting.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.github.smkozh.restaurantvoting.HasId;
+import com.github.smkozh.restaurantvoting.View;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,11 +16,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "menu")
+@Table(name = "menu", uniqueConstraints = {@UniqueConstraint(columnNames = {"restaurant_id", "date"}, name = "menus_unique_restaurant_date_idx")})
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Menu extends AbstractBaseEntity {
+public class Menu extends AbstractBaseEntity implements HasId {
 
     @Column(name = "date", nullable = false)
     @NotNull
@@ -26,7 +28,7 @@ public class Menu extends AbstractBaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id", nullable = false)
-    @NotNull
+    @NotNull(groups = {View.Persist.class})
     @JsonBackReference
     private Restaurant restaurant;
 
