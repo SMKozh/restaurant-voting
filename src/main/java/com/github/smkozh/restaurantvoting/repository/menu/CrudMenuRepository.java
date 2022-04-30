@@ -13,10 +13,10 @@ import java.util.List;
 public interface CrudMenuRepository extends JpaRepository<Menu, Integer> {
 
     @EntityGraph(attributePaths = {"dishes"}, type = EntityGraph.EntityGraphType.LOAD)
-    List<Menu> getAllByRestaurantIdOrderByDateDesc(int id);
+    List<Menu> getAllByRestaurantIdOrderByDateDesc(int restaurantId);
 
     @EntityGraph(attributePaths = {"dishes"}, type = EntityGraph.EntityGraphType.LOAD)
-    List<Menu> getAllByRestaurantIdAndDate(int id, LocalDate localDate);
+    Menu getByRestaurantIdAndDate(int restaurantId, LocalDate localDate);
 
     @Modifying
     @Transactional

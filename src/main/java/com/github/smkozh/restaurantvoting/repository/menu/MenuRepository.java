@@ -2,6 +2,7 @@ package com.github.smkozh.restaurantvoting.repository.menu;
 
 import com.github.smkozh.restaurantvoting.model.Menu;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface MenuRepository {
@@ -16,4 +17,7 @@ public interface MenuRepository {
 
     // ORDERED dateTime desc
     List<Menu> getAll(int restaurantId);
+
+    // null if restaurant does not have menu with this date
+    Menu get(int restaurantId, LocalDate localDate);
 }

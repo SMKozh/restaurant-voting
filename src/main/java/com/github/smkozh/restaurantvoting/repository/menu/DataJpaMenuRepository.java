@@ -4,6 +4,7 @@ import com.github.smkozh.restaurantvoting.model.Menu;
 import com.github.smkozh.restaurantvoting.repository.restaurant.CrudRestaurantRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -42,5 +43,10 @@ public class DataJpaMenuRepository implements MenuRepository {
     @Override
     public List<Menu> getAll(int restaurantId) {
         return crudMenuRepository.getAllByRestaurantIdOrderByDateDesc(restaurantId);
+    }
+
+    @Override
+    public Menu get(int restaurantId, LocalDate localDate) {
+        return crudMenuRepository.getByRestaurantIdAndDate(restaurantId, localDate);
     }
 }
