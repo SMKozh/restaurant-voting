@@ -1,9 +1,7 @@
 package com.github.smkozh.restaurantvoting.model;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.github.smkozh.restaurantvoting.HasId;
+import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -16,7 +14,8 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Vote extends AbstractBaseEntity {
+@ToString(callSuper = true)
+public class Vote extends AbstractBaseEntity implements HasId {
 
     @Column(name = "date_time", nullable = false)
     @NotNull

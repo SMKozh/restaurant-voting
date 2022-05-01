@@ -29,7 +29,7 @@ public class DataJpaDishRepository implements DishRepository {
 
     @Override
     public boolean delete(int id, int menuId) {
-        return crudDishRepository.deleteByIdAndMenu_Id(id, menuId) != 0;
+        return crudDishRepository.delete(id, menuId) != 0;
     }
 
     @Override

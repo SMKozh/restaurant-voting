@@ -34,6 +34,7 @@ logging:
       root: WARN
       com.github.smkozh: DEBUG
       org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver: DEBUG
+      org.springframework.security.web.FilterChainProxy: DEBUG
   file:
     name: log/app.log
 
