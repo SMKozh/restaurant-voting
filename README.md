@@ -26,3 +26,13 @@ As a result, provide a link to github repository. It should contain the code, RE
 
 [//]: # (P.S.: Make sure everything works with latest version that is on github :&#41;)
 [//]: # (P.P.S.: Assume that your API will be used by a frontend developer to build frontend on top of that.)
+
+----------
+
+[REST API documentation](http://localhost:8080/swagger-ui.html)
+
+**Креденшелы:**
+
+Admin: admin@gmail.com / admin
+
+User:  user@yandex.ru / password
