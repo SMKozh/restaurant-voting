@@ -20,7 +20,7 @@ public class VoteRestController extends AbstractVoteController {
 
     @Transactional
     @PostMapping(value = "/{restaurantId}")
-    public ResponseEntity<Vote> createWith(@PathVariable int restaurantId) {
+    public ResponseEntity<Vote> createWithLocation(@PathVariable int restaurantId) {
         Vote created = super.create(restaurantId);
 
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()

@@ -1,6 +1,7 @@
 INSERT INTO users (EMAIL, NAME, PASSWORD)
 VALUES ('user@yandex.ru', 'User', '{noop}password'),
-       ('admin@gmail.com', 'Admin', '{noop}admin');
+       ('admin@gmail.com', 'Admin', '{noop}admin'),
+       ('guest@mail.ru', 'Guest', '{noop}guest');
 
 INSERT INTO USER_ROLE (ROLE, USER_ID)
 VALUES ('USER', 1),
@@ -9,12 +10,13 @@ VALUES ('USER', 1),
 
 INSERT INTO restaurant (ID, NAME)
 VALUES (1, 'new york pizza'),
-       (2, 'clever irish pub');
+       (2, 'clever irish pub'),
+       (3, 'sushi make');
 
-INSERT INTO menu (ID, DATE, RESTAURANT_ID)
-VALUES (1, '2020-01-11', 1),
+INSERT INTO menu (ID, MENU_DATE, RESTAURANT_ID)
+VALUES (1, now(), 1),
        (2, '2020-02-15', 2),
-       (3, '2020-09-06', 2);
+       (3, now(), 2);
 
 INSERT INTO dish (ID, NAME, PRICE, MENU_ID)
 VALUES (1, 'pepsi', 100, 1),
@@ -30,5 +32,5 @@ VALUES (1, '2020-01-11', 1, 2),
        (3, '2020-02-16', 1, 2),
        (4, '2020-02-17', 2, 1),
        (5, '2020-02-18', 2, 1),
-       (6, '2020-02-19', 2, 1),
-       (7, '2020-02-20', 2, 2);
+       (6, now(), 1, 1),
+       (7, now(), 2, 2);

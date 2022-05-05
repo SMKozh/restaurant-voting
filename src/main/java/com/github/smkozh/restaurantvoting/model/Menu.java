@@ -16,13 +16,13 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "menu", uniqueConstraints = {@UniqueConstraint(columnNames = {"restaurant_id", "date"}, name = "menus_unique_restaurant_date_idx")})
+@Table(name = "menu", uniqueConstraints = {@UniqueConstraint(columnNames = {"restaurant_id", "menu_date"}, name = "menus_unique_restaurant_date_idx")})
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Menu extends AbstractBaseEntity implements HasId {
 
-    @Column(name = "date", nullable = false)
+    @Column(name = "menu_date", nullable = false)
     @NotNull
     private LocalDate date;
 
@@ -32,8 +32,7 @@ public class Menu extends AbstractBaseEntity implements HasId {
     @JsonBackReference
     private Restaurant restaurant;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "menu")//, cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @OnDelete(action = OnDeleteAction.CASCADE) //https://stackoverflow.com/a/44988100/548473
-//    @JsonManagedReference
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "menu")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Dish> dishes;
 }

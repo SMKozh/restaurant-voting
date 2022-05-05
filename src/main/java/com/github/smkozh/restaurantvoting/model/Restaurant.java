@@ -21,8 +21,8 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Restaurant extends AbstractNamedEntity implements HasId {
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")//, cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @OnDelete(action = OnDeleteAction.CASCADE) //https://stackoverflow.com/a/44988100/548473
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonManagedReference
     private List<Menu> menus;
 }
