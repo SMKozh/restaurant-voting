@@ -5,6 +5,7 @@ import com.github.smkozh.restaurantvoting.repository.menu.MenuRepository;
 import com.github.smkozh.restaurantvoting.util.validation.ValidationUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -42,12 +43,14 @@ public class AdminMenuController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @CacheEvict(cacheNames = "restaurants", allEntries = true)
     public void delete(@PathVariable int id, @PathVariable int restaurantId) {
         log.info("delete menu {} for restaurant {}", id, restaurantId);
         ValidationUtil.checkNotFoundWithId(repository.delete(id, restaurantId), id);
     }
 
     @Transactional
+    @CacheEvict(cacheNames = "restaurants", allEntries = true)
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Menu> createWithLocation(@Valid @RequestBody Menu menu, @PathVariable int restaurantId) {
         log.info("create {} for restaurant {}", menu, restaurantId);
@@ -63,6 +66,7 @@ public class AdminMenuController {
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @CacheEvict(cacheNames = "restaurants", allEntries = true)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@Valid @RequestBody Menu menu, @PathVariable int id, @PathVariable int restaurantId) {
         log.info("update {} for restaurant {}", id, restaurantId);

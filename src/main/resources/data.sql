@@ -6,7 +6,8 @@ VALUES ('user@yandex.ru', 'User', '{noop}password'),
 INSERT INTO USER_ROLE (ROLE, USER_ID)
 VALUES ('USER', 1),
        ('ADMIN', 2),
-       ('USER', 2);
+       ('USER', 2),
+       ('USER', 3);
 
 INSERT INTO restaurant (ID, NAME)
 VALUES (1, 'new york pizza'),

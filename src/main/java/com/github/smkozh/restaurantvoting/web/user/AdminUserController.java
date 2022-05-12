@@ -4,6 +4,7 @@ import com.github.smkozh.restaurantvoting.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,7 @@ import static com.github.smkozh.restaurantvoting.util.validation.ValidationUtil.
 public class AdminUserController extends AbstractUserController {
     static final String REST_URL = "api/admin/users";
 
+    @Cacheable
     @GetMapping
     public List<User> getAll() {
         log.info("get all");

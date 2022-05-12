@@ -9,6 +9,7 @@ import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.extern.slf4j.Slf4j;
 import org.h2.tools.Server;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -24,6 +25,7 @@ import java.util.List;
 @Configuration
 @Slf4j
 @EnableWebMvc
+@EnableCaching
 public class AppConfig implements WebMvcConfigurer {
 /*
     @Bean(initMethod = "start", destroyMethod = "stop")

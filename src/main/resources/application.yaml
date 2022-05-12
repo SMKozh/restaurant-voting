@@ -29,12 +29,18 @@ spring:
     password:
   h2.console.enabled: true
 
+  cache:
+    cache-names: users, restaurants
+    caffeine.spec: maximumSize=1,expireAfterAccess=300s
+
+
 logging:
   level:
       root: WARN
       com.github.smkozh: DEBUG
       org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver: DEBUG
       org.springframework.security.web.FilterChainProxy: DEBUG
+      org.springframework.cache: TRACE
   file:
     name: log/app.log
 
