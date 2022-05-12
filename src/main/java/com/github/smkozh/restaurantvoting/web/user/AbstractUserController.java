@@ -3,6 +3,7 @@ package com.github.smkozh.restaurantvoting.web.user;
 import com.github.smkozh.restaurantvoting.model.User;
 import com.github.smkozh.restaurantvoting.repository.UserRepository;
 import com.github.smkozh.restaurantvoting.util.UserUtil;
+import com.github.smkozh.restaurantvoting.util.validation.ValidationUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -22,7 +23,7 @@ public abstract class AbstractUserController {
     @CacheEvict(value = "users", allEntries = true)
     public void delete(int id) {
         log.info("delete {}", id);
-        repository.deleteById(id);
+        ValidationUtil.checkModification(repository.delete(id), id);
     }
 
     protected User prepareAndSave(User user) {

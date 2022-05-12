@@ -7,8 +7,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.github.smkozh.restaurantvoting.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.h2.tools.Server;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,6 +40,11 @@ public class AppConfig implements WebMvcConfigurer {
     public Server h2Server() throws SQLException {
         log.info("Start H2 TCP server");
         return Server.createTcpServer("-tcp", "-tcpAllowOthers", "-tcpPort", "9092");
+    }
+
+    @Autowired
+    public void storeObjectMapper(ObjectMapper objectMapper) {
+        JsonUtil.setMapper(objectMapper);
     }
 
     //    https://stackoverflow.com/a/21760361

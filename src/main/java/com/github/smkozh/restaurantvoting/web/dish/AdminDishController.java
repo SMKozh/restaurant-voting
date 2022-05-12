@@ -23,9 +23,8 @@ import static com.github.smkozh.restaurantvoting.util.validation.ValidationUtil.
 @RestController
 @RequestMapping(value = AdminDishController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 @Slf4j
-//@CacheConfig
 public class AdminDishController {
-    static final String REST_URL = "api/admin/menus/{menuId}/dishes";
+    static final String REST_URL = "/api/admin/menus/{menuId}/dishes";
 
     @Autowired
     private DishRepository repository;
