@@ -16,6 +16,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.time.LocalDate;
 import java.util.List;
 
 import static com.github.smkozh.restaurantvoting.util.validation.ValidationUtil.*;
@@ -24,7 +25,7 @@ import static com.github.smkozh.restaurantvoting.util.validation.ValidationUtil.
 @RequestMapping(value = AdminMenuController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 @Slf4j
 public class AdminMenuController {
-    static final String REST_URL = "api/admin/restaurants/{restaurantId}/menus";
+    static final String REST_URL = "/api/admin/restaurants/{restaurantId}/menus";
 
     @Autowired
     private MenuRepository repository;
@@ -39,6 +40,12 @@ public class AdminMenuController {
     public Menu get(@PathVariable int id, @PathVariable int restaurantId) {
         log.info("get menu {} for restaurant {}", id, restaurantId);
         return checkNotFoundWithId(repository.get(id, restaurantId), id);
+    }
+
+    @GetMapping("/today")
+    public Menu getToday(@PathVariable int restaurantId) {
+        log.info("get today menu for restaurant {}", restaurantId);
+        return repository.get(restaurantId, LocalDate.now());
     }
 
     @DeleteMapping("/{id}")

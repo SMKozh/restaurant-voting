@@ -25,7 +25,7 @@ import static com.github.smkozh.restaurantvoting.util.validation.ValidationUtil.
 @Slf4j
 //@CacheConfig(cacheNames = "restaurants")
 public class AdminRestaurantController extends AbstractRestaurantController {
-    static final String REST_URL = "api/admin/restaurants";
+    static final String REST_URL = "/api/admin/restaurants";
 
     //    @Cacheable
     @GetMapping
@@ -41,8 +41,8 @@ public class AdminRestaurantController extends AbstractRestaurantController {
 
     @Transactional
     @GetMapping("/with-menus")
-    public List<Restaurant> getAllWithMenus() {
-        return super.getAllWithMenus();
+    public List<Restaurant> getAllWithTodayMenus() {
+        return super.getAllWithTodayMenus();
     }
 
     @Transactional

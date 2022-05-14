@@ -23,8 +23,8 @@ public abstract class AbstractRestaurantController {
     protected MenuRepository menuRepository;
 
     @Cacheable
-    public List<Restaurant> getAllWithMenus() {
-        log.info("get all with menus");
+    public List<Restaurant> getAllWithTodayMenus() {
+        log.info("get all with today menus");
         List<Restaurant> restaurants = repository.findAll();
         for (Restaurant restaurant : restaurants) {
             Menu menu = menuRepository.get(restaurant.getId(), LocalDate.now());

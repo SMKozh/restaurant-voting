@@ -29,9 +29,9 @@ public class Dish extends AbstractNamedEntity implements HasId {
     @Range(min = 10, max = 20000)
     private int price;
 
-    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "menu_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonBackReference(value = "dish")
     private Menu menu;
 }
