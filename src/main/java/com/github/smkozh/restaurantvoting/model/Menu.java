@@ -23,12 +23,6 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Menu extends AbstractBaseEntity implements HasId {
 
-    public Menu(Integer id, LocalDate date, List<Dish> dishes) {
-        super(id);
-        this.date = date;
-        this.dishes = dishes;
-    }
-
     @Column(name = "menu_date", nullable = false)
     @NotNull
     private LocalDate date;
@@ -43,4 +37,10 @@ public class Menu extends AbstractBaseEntity implements HasId {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonManagedReference(value = "dish")
     private List<Dish> dishes;
+
+    public Menu(Integer id, LocalDate date, List<Dish> dishes) {
+        super(id);
+        this.date = date;
+        this.dishes = dishes;
+    }
 }

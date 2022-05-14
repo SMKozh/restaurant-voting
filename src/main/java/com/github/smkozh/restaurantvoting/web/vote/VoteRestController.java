@@ -1,7 +1,6 @@
 package com.github.smkozh.restaurantvoting.web.vote;
 
 import com.github.smkozh.restaurantvoting.model.Vote;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +15,7 @@ import java.net.URI;
 @RestController
 @RequestMapping(value = VoteRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class VoteRestController extends AbstractVoteController {
-    static final String REST_URL = "api/votes";
+    static final String REST_URL = "/api/votes";
 
     @Transactional
     @PostMapping(value = "/{restaurantId}")

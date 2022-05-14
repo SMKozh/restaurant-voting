@@ -19,11 +19,6 @@ import javax.validation.constraints.NotNull;
 @ToString(callSuper = true)
 public class Dish extends AbstractNamedEntity implements HasId {
 
-    public Dish(Integer id, String name, int price) {
-        super(id, name);
-        this.price = price;
-    }
-
     @Column(name = "price", nullable = false)
     @NotNull
     @Range(min = 10, max = 20000)
@@ -34,4 +29,9 @@ public class Dish extends AbstractNamedEntity implements HasId {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonBackReference(value = "dish")
     private Menu menu;
+
+    public Dish(Integer id, String name, int price) {
+        super(id, name);
+        this.price = price;
+    }
 }

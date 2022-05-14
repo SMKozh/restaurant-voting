@@ -11,8 +11,11 @@ import java.util.List;
 @Transactional(readOnly = true)
 public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
 
-    @EntityGraph(attributePaths = {"user"}, type = EntityGraph.EntityGraphType.LOAD)
-    List<Vote> getAllByRestaurantId(int restaurantId);
+    @EntityGraph(attributePaths = {"user", "restaurant"}, type = EntityGraph.EntityGraphType.LOAD)
+    List<Vote> getAllByRestaurantIdOrderByDateAsc(int restaurantId);
+
+    @EntityGraph(attributePaths = {"user", "restaurant"}, type = EntityGraph.EntityGraphType.LOAD)
+    List<Vote> getAllByRestaurantIdAndDateOrderByDateAsc(int restaurantId, LocalDate date);
 
     Vote getByUserIdAndDate(int userId, LocalDate date);
 }

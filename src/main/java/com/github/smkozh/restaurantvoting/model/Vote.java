@@ -33,4 +33,9 @@ public class Vote extends AbstractBaseEntity implements HasId {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
     private Restaurant restaurant;
+
+    public Vote(Integer id, LocalDate date) {
+        super(id);
+        this.date = date;
+    }
 }

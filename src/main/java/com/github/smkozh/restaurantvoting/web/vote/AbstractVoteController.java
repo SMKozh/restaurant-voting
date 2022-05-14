@@ -6,6 +6,7 @@ import com.github.smkozh.restaurantvoting.repository.UserRepository;
 import com.github.smkozh.restaurantvoting.repository.restaurant.CrudRestaurantRepository;
 import com.github.smkozh.restaurantvoting.repository.vote.CrudVoteRepository;
 import com.github.smkozh.restaurantvoting.web.SecurityUtil;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -24,6 +25,9 @@ public abstract class AbstractVoteController {
     @Autowired
     protected CrudRestaurantRepository restaurantRepository;
 
+    @Setter
+    protected static LocalTime deadLine = LocalTime.of(11, 0);
+
     public Vote create(int restaurantId) {
         int userId = SecurityUtil.authId();
         Vote oldVote = repository.getByUserIdAndDate(userId, LocalDate.now());
@@ -36,7 +40,7 @@ public abstract class AbstractVoteController {
             vote.setUser(userRepository.getById(userId));
             created = repository.save(vote);
         } else {
-            if (LocalTime.now().isAfter(LocalTime.of(11, 0))) {
+            if (LocalTime.now().isAfter(deadLine)) {
                 throw new IllegalRequestDataException("You have already voted");
             } else {
                 log.info("update vote {}", oldVote.getId());
