@@ -1,6 +1,7 @@
 package com.github.smkozh.restaurantvoting.model;
 
-import com.github.smkozh.restaurantvoting.HasId;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.smkozh.restaurantvoting.HasIdAndEmail;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -8,6 +9,7 @@ import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.io.Serial;
@@ -23,7 +25,7 @@ import java.util.Set;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @ToString(callSuper = true, exclude = "password")
-public class User extends AbstractNamedEntity implements HasId, Serializable {
+public class User extends AbstractNamedEntity implements HasIdAndEmail, Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
@@ -33,8 +35,10 @@ public class User extends AbstractNamedEntity implements HasId, Serializable {
     @Size(max = 128)
     private String email;
 
-    @Column(name = "password")
-    @Size(max = 256)
+    @Column(name = "password", nullable = false)
+    @NotBlank
+    @Size(min = 5, max = 100)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @Enumerated(EnumType.STRING)

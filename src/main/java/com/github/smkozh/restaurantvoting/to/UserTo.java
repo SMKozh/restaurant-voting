@@ -1,5 +1,7 @@
 package com.github.smkozh.restaurantvoting.to;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.smkozh.restaurantvoting.HasIdAndEmail;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -16,14 +18,14 @@ public class UserTo extends NamedTo implements HasIdAndEmail {
     @Email
     @NotBlank
     @Size(max = 100)
-//    @NoHtml  // https://stackoverflow.com/questions/17480809
     String email;
 
     @NotBlank
     @Size(min = 5, max = 32)
     String password;
 
-    public UserTo(Integer id, String name, String email, String password) {
+    @JsonCreator
+    public UserTo(@JsonProperty("id") Integer id, @JsonProperty("name") String name, @JsonProperty("email") String email, @JsonProperty("password") String password) {
         super(id, name);
         this.email = email;
         this.password = password;
