@@ -2,7 +2,7 @@ package com.github.smkozh.restaurantvoting.web.vote;
 
 import com.github.smkozh.restaurantvoting.error.IllegalRequestDataException;
 import com.github.smkozh.restaurantvoting.model.Vote;
-import com.github.smkozh.restaurantvoting.repository.UserRepository;
+import com.github.smkozh.restaurantvoting.repository.user.UserRepository;
 import com.github.smkozh.restaurantvoting.repository.restaurant.CrudRestaurantRepository;
 import com.github.smkozh.restaurantvoting.repository.vote.CrudVoteRepository;
 import com.github.smkozh.restaurantvoting.web.SecurityUtil;

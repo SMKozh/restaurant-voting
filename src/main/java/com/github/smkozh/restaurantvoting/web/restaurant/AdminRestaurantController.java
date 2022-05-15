@@ -23,11 +23,9 @@ import static com.github.smkozh.restaurantvoting.util.validation.ValidationUtil.
 @RestController
 @RequestMapping(value = AdminRestaurantController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 @Slf4j
-//@CacheConfig(cacheNames = "restaurants")
 public class AdminRestaurantController extends AbstractRestaurantController {
     static final String REST_URL = "/api/admin/restaurants";
 
-    //    @Cacheable
     @GetMapping
     public List<Restaurant> getAll() {
         log.info("get all");

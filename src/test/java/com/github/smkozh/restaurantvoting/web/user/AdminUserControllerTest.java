@@ -2,7 +2,7 @@ package com.github.smkozh.restaurantvoting.web.user;
 
 import com.github.smkozh.restaurantvoting.model.Role;
 import com.github.smkozh.restaurantvoting.model.User;
-import com.github.smkozh.restaurantvoting.repository.UserRepository;
+import com.github.smkozh.restaurantvoting.repository.user.UserRepository;
 import com.github.smkozh.restaurantvoting.web.AbstractControllerTest;
 import com.github.smkozh.restaurantvoting.web.GlobalExceptionHandler;
 import org.junit.jupiter.api.Test;

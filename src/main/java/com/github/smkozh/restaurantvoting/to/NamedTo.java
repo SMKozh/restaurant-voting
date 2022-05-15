@@ -11,7 +11,6 @@ import javax.validation.constraints.Size;
 public class NamedTo extends BaseTo {
     @NotBlank
     @Size(min = 2, max = 100)
-//    @NoHtml
     protected String name;
 
     public NamedTo(Integer id, String name) {
