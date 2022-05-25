@@ -15,8 +15,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
-@ToString(callSuper = true)
+@ToString(callSuper = true, exclude = "menu")
 public class Dish extends AbstractNamedEntity implements HasId {
 
     @Column(name = "price", nullable = false)

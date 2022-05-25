@@ -1,3 +1,13 @@
+# **Voting system for deciding where to have lunch**
+
+- Spring Boot
+- Spring Data JPA
+- H2 Database
+- Lombok
+- Jackson
+- Swagger/ OpenAPI 3.0
+
+------------------------
 **Design and implement a REST API using Hibernate/Spring/SpringMVC (or Spring-Boot) without frontend.**
 
 The task is:
@@ -29,9 +39,12 @@ As a result, provide a link to github repository. It should contain the code, RE
 
 ----------
 
+Run: `mvn spring-boot:run` in root directory.
+
+-----------------------
 [REST API documentation](http://localhost:8080/swagger-ui.html)
 
-**Креденшелы:**
+**Credentials:**
 
 Admin: admin@gmail.com / admin
 

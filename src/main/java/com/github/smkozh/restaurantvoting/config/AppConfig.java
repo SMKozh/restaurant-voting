@@ -18,6 +18,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -28,6 +29,7 @@ import java.util.List;
 @Slf4j
 @EnableWebMvc
 @EnableCaching
+@EnableScheduling
 public class AppConfig implements WebMvcConfigurer {
 /*
     @Bean(initMethod = "start", destroyMethod = "stop")

@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
-@ToString(callSuper = true)
+@ToString(callSuper = true, exclude = {"user", "restaurant"})
 public class Vote extends AbstractBaseEntity implements HasId {
 
     @Column(name = "vote_date", nullable = false)

@@ -30,7 +30,7 @@ spring:
   h2.console.enabled: true
 
   cache:
-    cache-names: users, restaurants
+    cache-names: restaurants
     caffeine.spec: maximumSize=1,expireAfterAccess=300s
 
 
