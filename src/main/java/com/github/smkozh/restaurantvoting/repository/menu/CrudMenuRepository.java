@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Transactional(readOnly = true)
 public interface CrudMenuRepository extends JpaRepository<Menu, Integer> {
@@ -19,6 +20,10 @@ public interface CrudMenuRepository extends JpaRepository<Menu, Integer> {
 
     @EntityGraph(attributePaths = {"dishes"}, type = EntityGraph.EntityGraphType.LOAD)
     Menu getByRestaurantIdAndDate(int restaurantId, LocalDate localDate);
+
+    @Override
+    @EntityGraph(attributePaths = {"restaurant"}, type = EntityGraph.EntityGraphType.LOAD)
+    Optional<Menu> findById(Integer id);
 
     @Modifying
     @Transactional

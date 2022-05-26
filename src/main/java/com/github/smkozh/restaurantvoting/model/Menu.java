@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.github.smkozh.restaurantvoting.HasId;
 import com.github.smkozh.restaurantvoting.View;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -29,11 +30,13 @@ public class Menu extends AbstractBaseEntity implements HasId {
     @JoinColumn(name = "restaurant_id", nullable = false)
     @NotNull(groups = {View.Persist.class})
     @JsonBackReference(value = "restaurant")
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Restaurant restaurant;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "menu")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonManagedReference(value = "dish")
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private List<Dish> dishes;
 
     public Menu(Integer id, LocalDate date, List<Dish> dishes) {
