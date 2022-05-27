@@ -1,19 +1,19 @@
 package com.github.smkozh.restaurantvoting.repository.dish;
 
-import com.github.smkozh.restaurantvoting.model.Dish;
+import com.github.smkozh.restaurantvoting.model.MenuItem;
 
 import java.util.List;
 
-public interface DishRepository {
+public interface MenuItemRepository {
     // null if updated dish does not belong to menuId
-    Dish save(Dish dish, int menuId);
+    MenuItem save(MenuItem menuItem, int menuId);
 
     // false if dish does not belong to menuId
     boolean delete(int id, int menuId);
 
     // null if dish does not belong to menuId
-    Dish get(int id, int menuId);
+    MenuItem get(int id, int menuId);
 
     // ORDERED dateTime desc
-    List<Dish> getAll(int menuId);
+    List<MenuItem> getAll(int menuId);
 }
