@@ -3,6 +3,7 @@ package com.github.smkozh.restaurantvoting.repository.dish;
 import com.github.smkozh.restaurantvoting.model.MenuItem;
 import com.github.smkozh.restaurantvoting.repository.restaurant.CrudRestaurantRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class DataJpaMenuItemRepository implements MenuItemRepository {
         this.crudRestaurantRepository = crudRestaurantRepository;
     }
 
+    @Transactional
     @Override
     public MenuItem save(MenuItem menuItem, int restaurantId) {
         if (!menuItem.isNew() && get(menuItem.id(), restaurantId) == null) {

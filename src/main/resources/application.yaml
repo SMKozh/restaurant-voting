@@ -6,6 +6,12 @@ spring:
     hibernate:
       ddl-auto: create-drop
     properties:
+      javax:
+        persistence:
+          validation:
+            group:
+              pre-update: com.github.smkozh.restaurantvoting.View$Persist
+              pre-persist: com.github.smkozh.restaurantvoting.View$Persist
       #  http://docs.jboss.org/hibernate/orm/5.3/userguide/html_single/Hibernate_User_Guide.html#configurations
       hibernate:
         format_sql: true

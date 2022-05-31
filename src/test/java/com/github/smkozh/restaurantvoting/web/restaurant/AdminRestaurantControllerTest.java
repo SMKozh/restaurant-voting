@@ -12,6 +12,8 @@ import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.time.LocalDate;
+
 import static com.github.smkozh.restaurantvoting.web.restaurant.RestaurantTestData.*;
 import static com.github.smkozh.restaurantvoting.web.user.UserTestData.ADMIN_MAIL;
 import static com.github.smkozh.restaurantvoting.web.user.UserTestData.USER_MAIL;
@@ -36,7 +38,7 @@ class AdminRestaurantControllerTest extends AbstractControllerTest {
     @WithUserDetails(value = ADMIN_MAIL)
     void getWithTodayMenu() throws Exception {
         perform(MockMvcRequestBuilders.get(REST_URL + restaurant2WithTodayMenu.id() + "/with-menuItems")
-                .param("date", "2022-05-27"))
+                .param("date", LocalDate.now().toString()))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))

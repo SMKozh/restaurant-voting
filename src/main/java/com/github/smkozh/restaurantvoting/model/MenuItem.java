@@ -31,7 +31,7 @@ public class MenuItem extends AbstractNamedEntity implements HasId {
     private LocalDate date;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @NotNull(groups = {View.Persist.class})
+    @NotNull(groups = View.Persist.class)
     @JoinColumn(name = "restaurant_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonBackReference(value = "menu_item")
