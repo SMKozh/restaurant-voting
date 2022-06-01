@@ -1,7 +1,7 @@
 package com.github.smkozh.restaurantvoting.web.menuitem;
 
 import com.github.smkozh.restaurantvoting.model.MenuItem;
-import com.github.smkozh.restaurantvoting.repository.dish.MenuItemRepository;
+import com.github.smkozh.restaurantvoting.repository.menuitem.MenuItemRepository;
 import com.github.smkozh.restaurantvoting.util.JsonUtil;
 import com.github.smkozh.restaurantvoting.web.AbstractControllerTest;
 import org.junit.jupiter.api.Test;

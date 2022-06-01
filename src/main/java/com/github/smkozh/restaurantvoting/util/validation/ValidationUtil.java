@@ -2,10 +2,11 @@ package com.github.smkozh.restaurantvoting.util.validation;
 
 import com.github.smkozh.restaurantvoting.HasId;
 import com.github.smkozh.restaurantvoting.error.IllegalRequestDataException;
-import com.github.smkozh.restaurantvoting.error.NotFoundException;
 import lombok.experimental.UtilityClass;
 import org.springframework.core.NestedExceptionUtils;
 import org.springframework.lang.NonNull;
+
+import javax.persistence.EntityNotFoundException;
 
 @UtilityClass
 public class ValidationUtil {
@@ -32,7 +33,7 @@ public class ValidationUtil {
 
     public static void checkNotFound(boolean found, String msg) {
         if (!found) {
-            throw new NotFoundException("Not found entity with " + msg);
+            throw new EntityNotFoundException("Not found entity with " + msg);
         }
     }
 

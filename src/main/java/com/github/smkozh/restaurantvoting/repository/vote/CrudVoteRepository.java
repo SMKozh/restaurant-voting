@@ -7,15 +7,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Transactional(readOnly = true)
 public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
 
-    @EntityGraph(attributePaths = {"user", "restaurant"}, type = EntityGraph.EntityGraphType.LOAD)
-    List<Vote> getAllByRestaurantIdOrderByDateAsc(int restaurantId);
+    @EntityGraph(attributePaths = "restaurant", type = EntityGraph.EntityGraphType.LOAD)
+    Optional<Vote> findByDateAndUserId(LocalDate date, int userId);
 
-    @EntityGraph(attributePaths = {"user", "restaurant"}, type = EntityGraph.EntityGraphType.LOAD)
     List<Vote> getAllByRestaurantIdAndDateOrderByDateAsc(int restaurantId, LocalDate date);
 
-    Vote getByUserIdAndDate(int userId, LocalDate date);
+    Optional<Vote> getByUserIdAndDate(int userId, LocalDate date);
 }

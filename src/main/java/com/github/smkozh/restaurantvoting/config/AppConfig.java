@@ -70,7 +70,9 @@ public class AppConfig implements WebMvcConfigurer {
 
         ObjectMapper mapper = new ObjectMapper();
 
-        mapper.registerModule(new Hibernate5Module());
+        Hibernate5Module hibernate5Module = new Hibernate5Module();
+        hibernate5Module.configure(Hibernate5Module.Feature.SERIALIZE_IDENTIFIER_FOR_LAZY_NOT_LOADED_OBJECTS, true);
+        mapper.registerModule(hibernate5Module);
         mapper.registerModule(new JavaTimeModule());
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
         mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE);

@@ -1,4 +1,4 @@
-package com.github.smkozh.restaurantvoting.repository.dish;
+package com.github.smkozh.restaurantvoting.repository.menuitem;
 
 import com.github.smkozh.restaurantvoting.model.MenuItem;
 import com.github.smkozh.restaurantvoting.repository.restaurant.CrudRestaurantRepository;
@@ -36,8 +36,7 @@ public class DataJpaMenuItemRepository implements MenuItemRepository {
 
     @Override
     public MenuItem get(int id, int restaurantId) {
-        return crudMenuItemRepository.findById(id)
-                .filter(dish -> dish.getRestaurant().id() == restaurantId)
+        return crudMenuItemRepository.findByIdAndRestaurantId(id,restaurantId)
                 .orElse(null);
     }
 

@@ -1,4 +1,4 @@
-package com.github.smkozh.restaurantvoting.repository.dish;
+package com.github.smkozh.restaurantvoting.repository.menuitem;
 
 import com.github.smkozh.restaurantvoting.model.MenuItem;
 

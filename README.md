@@ -49,3 +49,5 @@ Run: `mvn spring-boot:run` in root directory.
 Admin: admin@gmail.com / admin
 
 User:  user@yandex.ru / password
+
+Guest:  guest@mail.ru / guest

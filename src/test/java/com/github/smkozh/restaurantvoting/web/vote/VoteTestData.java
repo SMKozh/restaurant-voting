@@ -34,4 +34,8 @@ public class VoteTestData {
     public static Vote getNew() {
         return new Vote(null, LocalDate.now());
     }
+
+    public static Vote getUpdated() {
+        return new Vote(vote3.id(), LocalDate.now());
+    }
 }
