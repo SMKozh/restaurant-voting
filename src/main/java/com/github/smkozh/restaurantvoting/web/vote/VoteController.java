@@ -39,8 +39,8 @@ public class VoteController {
 
     @PutMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@RequestParam int voteId, @RequestParam int restaurantId, @Parameter(hidden = true) @AuthenticationPrincipal AuthUser authUser) {
-        service.update(voteId, restaurantId, authUser.id());
+    public void update(@RequestParam int restaurantId, @Parameter(hidden = true) @AuthenticationPrincipal AuthUser authUser) {
+        service.update(restaurantId, authUser.id());
     }
 
     @GetMapping("/by-date")

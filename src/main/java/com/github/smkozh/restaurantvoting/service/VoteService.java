@@ -35,7 +35,7 @@ public class VoteService {
 
     @Transactional
     public Vote create(int restaurantId, int userId) {
-        if (repository.getByUserIdAndDate(userId, LocalDate.now()).isPresent()) {
+        if (repository.findByDateAndUserId(LocalDate.now(), userId).isPresent()) {
             throw new IllegalRequestDataException("Your today vote is already created");
         }
         log.info("create vote");
@@ -48,14 +48,11 @@ public class VoteService {
     }
 
     @Transactional
-    public void update(int voteId, int restaurantId, int userId) {
+    public void update(int restaurantId, int userId) {
         if (LocalTime.now().isAfter(deadLine)) {
             throw new IllegalRequestDataException("You can't change your vote after " + VoteService.getDeadLine());
         } else {
-            Vote oldVote = repository.findById(voteId)
-                    .filter(v -> v.getDate().isEqual(LocalDate.now()))
-                    .filter(v -> v.getUser().id() == userId)
-                    .orElseThrow(() -> new EntityNotFoundException("Vote with id = " + voteId + "not found"));
+            Vote oldVote = get(LocalDate.now(), userId);
             log.info("update vote {}", oldVote.getId());
             oldVote.setRestaurant(restaurantRepository.findById(restaurantId)
                     .orElseThrow(() -> new EntityNotFoundException("Restaurant with id = " + restaurantId + " not found")));
