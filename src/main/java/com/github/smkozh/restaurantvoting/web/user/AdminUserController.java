@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
@@ -30,7 +31,7 @@ public class AdminUserController extends AbstractUserController {
 
     @Override
     @GetMapping("/{id}")
-    public ResponseEntity<User> get(@PathVariable int id) {
+    public User get(@PathVariable int id) {
         return super.get(id);
     }
 
@@ -61,8 +62,9 @@ public class AdminUserController extends AbstractUserController {
     }
 
     @GetMapping("/by-email")
-    public ResponseEntity<User> getByEmail(@RequestParam String email) {
+    public User getByEmail(@RequestParam String email) {
         log.info("getByEmail {}", email);
-        return ResponseEntity.of(repository.getByEmail(email));
+        return repository.getByEmail(email)
+                .orElseThrow(() -> new EntityNotFoundException("User with email: " + email + " not found"));
     }
 }

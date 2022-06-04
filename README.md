@@ -16,7 +16,7 @@ Build a voting system for deciding where to have lunch.
 
 * 2 types of users: admin and regular users
 
-* Admin can input a restaurant and it's lunch menu of the day (2-5 items usually, just a dish name and price)
+* Admin can input a restaurant and it's lunch menu of the day (2-5 items usually, just a menuItem name and price)
 
 * Menu changes each day (admins do the updates)
 
@@ -49,3 +49,5 @@ Run: `mvn spring-boot:run` in root directory.
 Admin: admin@gmail.com / admin
 
 User:  user@yandex.ru / password
+
+Guest:  guest@mail.ru / guest

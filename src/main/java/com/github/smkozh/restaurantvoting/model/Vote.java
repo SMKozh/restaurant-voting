@@ -1,7 +1,6 @@
 package com.github.smkozh.restaurantvoting.model;
 
 import com.github.smkozh.restaurantvoting.HasId;
-import com.github.smkozh.restaurantvoting.View;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -19,13 +18,13 @@ import java.time.LocalDate;
 public class Vote extends AbstractBaseEntity implements HasId {
 
     @Column(name = "vote_date", nullable = false)
-    @NotNull(groups = {View.Persist.class})
+    @NotNull
     private LocalDate date;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @NotNull(groups = {View.Persist.class})
+    @NotNull
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)

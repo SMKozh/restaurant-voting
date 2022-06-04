@@ -17,18 +17,18 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@ToString(callSuper = true, exclude = "menus")
+@ToString(callSuper = true, exclude = "menuItems")
 public class Restaurant extends AbstractNamedEntity implements HasId {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonManagedReference(value = "restaurant")
+    @JsonManagedReference(value = "menu_item")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
-    private List<Menu> menus;
+    private List<MenuItem> menuItems;
 
-    public Restaurant(Integer id, String name, List<Menu> menus) {
+    public Restaurant(Integer id, String name, List<MenuItem> menuItems) {
         super(id, name);
-        this.menus = menus;
+        this.menuItems = menuItems;
     }
 }

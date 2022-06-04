@@ -12,6 +12,8 @@ import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.time.LocalDate;
+
 import static com.github.smkozh.restaurantvoting.web.restaurant.RestaurantTestData.*;
 import static com.github.smkozh.restaurantvoting.web.user.UserTestData.ADMIN_MAIL;
 import static com.github.smkozh.restaurantvoting.web.user.UserTestData.USER_MAIL;
@@ -26,60 +28,21 @@ class AdminRestaurantControllerTest extends AbstractControllerTest {
     private CrudRestaurantRepository repository;
 
     @Test
-    @WithUserDetails(value = ADMIN_MAIL)
-    void getAll() throws Exception {
-        perform(MockMvcRequestBuilders.get(REST_URL))
-                .andExpect(status().isOk())
-                .andDo(print())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(RestaurantTestData.RESTAURANT_MATCHER.contentJson(restaurant1, restaurant2, restaurant3));
-    }
-
-    @Test
-    @WithUserDetails(value = ADMIN_MAIL)
-    void get() throws Exception {
-        perform(MockMvcRequestBuilders.get(REST_URL + restaurant1.id()))
-                .andExpect(status().isOk())
-                .andDo(print())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(RestaurantTestData.RESTAURANT_MATCHER.contentJson(restaurant1));
-    }
-
-    @Test
     @WithUserDetails(value = USER_MAIL)
-    void getForbidden() throws Exception {
-        perform(MockMvcRequestBuilders.get(REST_URL + restaurant1.id()))
+    void deleteForbidden() throws Exception {
+        perform(MockMvcRequestBuilders.delete(REST_URL + restaurant1.id()))
                 .andExpect(status().isForbidden());
     }
 
     @Test
     @WithUserDetails(value = ADMIN_MAIL)
-    void getAllWithTodayMenus() throws Exception {
-        perform(MockMvcRequestBuilders.get(REST_URL + "with-menus"))
-                .andExpect(status().isOk())
-                .andDo(print())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(RESTAURANT_WITH_MENU_MATCHER.contentJson(restaurant1, restaurant2WithTodayMenu, restaurant3));
-    }
-
-    @Test
-    @WithUserDetails(value = ADMIN_MAIL)
-    void getWithMenus() throws Exception {
-        perform(MockMvcRequestBuilders.get(REST_URL + "with-all-menus/" + restaurant2.id()))
-                .andExpect(status().isOk())
-                .andDo(print())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(RESTAURANT_WITH_MENU_MATCHER.contentJson(restaurant2));
-    }
-
-    @Test
-    @WithUserDetails(value = ADMIN_MAIL)
     void getWithTodayMenu() throws Exception {
-        perform(MockMvcRequestBuilders.get(REST_URL + "with-today-menu/" + restaurant2WithTodayMenu.id()))
+        perform(MockMvcRequestBuilders.get(REST_URL + restaurant2WithTodayMenu.id() + "/with-menuItems")
+                .param("date", LocalDate.now().toString()))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(RESTAURANT_WITH_MENU_MATCHER.contentJson(restaurant2WithTodayMenu));
+                .andExpect(RESTAURANT_WITH_MENU_ITEMS_MATCHER.contentJson(restaurant2WithTodayMenu));
     }
 
     @Test

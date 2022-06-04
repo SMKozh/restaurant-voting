@@ -25,6 +25,7 @@ import org.springframework.context.annotation.Configuration;
                         Voting system for deciding where to have lunch
                         <p><b>Тестовые креденшелы:</b><br>
                         - user@yandex.ru / password<br>
+                        - guest@mail.ru / guest<br>
                         - admin@gmail.com / admin<br></p>
                         """,
                 contact = @Contact(name = "Sergey Kozhevnikov", email = "kozhevnikovsm@gmail.com")
