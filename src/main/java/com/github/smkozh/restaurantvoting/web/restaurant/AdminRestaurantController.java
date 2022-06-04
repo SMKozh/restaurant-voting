@@ -10,7 +10,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.lang.Nullable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -31,7 +30,7 @@ public class AdminRestaurantController {
     protected CrudRestaurantRepository repository;
 
     @GetMapping("/{id}/with-menuItems")
-    public Restaurant getWithMenuItemsByDate(@PathVariable int id, @RequestParam @Nullable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+    public Restaurant getWithMenuItemsByDate(@PathVariable int id, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         log.info("get {} with {} menuItems", id, date);
         return ValidationUtil.checkNotFoundWithId(repository.getWithMenuItemsByDate(id, date).orElse(null), id);
     }

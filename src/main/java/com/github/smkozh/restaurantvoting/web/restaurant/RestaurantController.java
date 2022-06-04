@@ -5,6 +5,7 @@ import com.github.smkozh.restaurantvoting.repository.restaurant.CrudRestaurantRe
 import com.github.smkozh.restaurantvoting.util.validation.ValidationUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,6 +35,7 @@ public class RestaurantController {
         return ValidationUtil.checkNotFoundWithId(repository.findById(id).orElse(null), id);
     }
 
+    @Cacheable(value = "restaurants")
     @GetMapping("/with-menuItems")
     public List<Restaurant> getAllWithMenuItems() {
         log.info("get all with today menuItems");

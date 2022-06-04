@@ -5,6 +5,7 @@ import com.github.smkozh.restaurantvoting.model.Vote;
 import com.github.smkozh.restaurantvoting.repository.restaurant.CrudRestaurantRepository;
 import com.github.smkozh.restaurantvoting.repository.user.UserRepository;
 import com.github.smkozh.restaurantvoting.repository.vote.CrudVoteRepository;
+import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ public class VoteService {
     protected CrudRestaurantRepository restaurantRepository;
 
     @Setter
+    @Getter
     protected static LocalTime deadLine = LocalTime.of(11, 0);
 
     @Transactional
@@ -48,7 +50,7 @@ public class VoteService {
     @Transactional
     public void update(int voteId, int restaurantId, int userId) {
         if (LocalTime.now().isAfter(deadLine)) {
-            throw new IllegalRequestDataException("You can't change your vote after 11:00");
+            throw new IllegalRequestDataException("You can't change your vote after " + VoteService.getDeadLine());
         } else {
             Vote oldVote = repository.findById(voteId)
                     .filter(v -> v.getDate().isEqual(LocalDate.now()))

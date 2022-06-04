@@ -5,6 +5,7 @@ import com.github.smkozh.restaurantvoting.repository.restaurant.CrudRestaurantRe
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Repository
@@ -25,7 +26,8 @@ public class DataJpaMenuItemRepository implements MenuItemRepository {
         if (!menuItem.isNew() && get(menuItem.id(), restaurantId) == null) {
             return null;
         }
-        menuItem.setRestaurant(crudRestaurantRepository.getById(restaurantId));
+        menuItem.setRestaurant(crudRestaurantRepository.findById(restaurantId)
+                .orElseThrow(() -> new EntityNotFoundException("Restaurant with id = " + restaurantId + " not found")));
         return crudMenuItemRepository.save(menuItem);
     }
 
@@ -36,7 +38,7 @@ public class DataJpaMenuItemRepository implements MenuItemRepository {
 
     @Override
     public MenuItem get(int id, int restaurantId) {
-        return crudMenuItemRepository.findByIdAndRestaurantId(id,restaurantId)
+        return crudMenuItemRepository.findByIdAndRestaurantId(id, restaurantId)
                 .orElse(null);
     }
 
