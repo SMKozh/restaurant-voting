@@ -1,7 +1,7 @@
 package com.github.smkozh.restaurantvoting.web.menuitem;
 
 import com.github.smkozh.restaurantvoting.model.MenuItem;
-import com.github.smkozh.restaurantvoting.repository.menuitem.MenuItemRepository;
+import com.github.smkozh.restaurantvoting.repository.menuitem.CrudMenuItemRepository;
 import com.github.smkozh.restaurantvoting.util.JsonUtil;
 import com.github.smkozh.restaurantvoting.web.AbstractControllerTest;
 import org.junit.jupiter.api.Test;
@@ -26,7 +26,7 @@ class AdminMenuItemControllerTest extends AbstractControllerTest {
     private static final int restaurantId = 2;
 
     @Autowired
-    private MenuItemRepository repository;
+    private CrudMenuItemRepository repository;
 
     @Test
     @WithUserDetails(value = ADMIN_MAIL)
@@ -59,7 +59,7 @@ class AdminMenuItemControllerTest extends AbstractControllerTest {
         perform(MockMvcRequestBuilders.delete(REST_URL + "{id}", restaurantId, MENU_ITEM_4.id()))
                 .andDo(print())
                 .andExpect(status().isNoContent());
-        assertNull(repository.get(MENU_ITEM_4.id(), restaurantId));
+        assertNull(repository.findByIdAndRestaurantId(MENU_ITEM_4.id(), restaurantId).orElse(null));
     }
 
     @Test
@@ -74,7 +74,8 @@ class AdminMenuItemControllerTest extends AbstractControllerTest {
         int newId = created.id();
         newMenuItem.setId(newId);
         MENU_ITEM_MATCHER.assertMatch(created, newMenuItem);
-        MENU_ITEM_MATCHER.assertMatch(repository.get(newId, restaurantId), newMenuItem);
+        MENU_ITEM_MATCHER.assertMatch(repository.findByIdAndRestaurantId(newId, restaurantId)
+                .orElse(null), newMenuItem);
     }
 
     @Test
@@ -87,6 +88,7 @@ class AdminMenuItemControllerTest extends AbstractControllerTest {
                 .content(JsonUtil.writeValue(updated)))
                 .andExpect(status().isNoContent());
 
-        MENU_ITEM_MATCHER.assertMatch(repository.get(updated.id(), restaurantId), updated);
+        MENU_ITEM_MATCHER.assertMatch(repository.findByIdAndRestaurantId(updated.id(), restaurantId)
+                .orElse(null), updated);
     }
 }
