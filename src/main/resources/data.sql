@@ -14,11 +14,6 @@ VALUES (1, 'new york pizza'),
        (2, 'clever irish pub'),
        (3, 'sushi make');
 
-/*INSERT INTO menu (ID, MENU_DATE, RESTAURANT_ID)
-VALUES (1, now(), 1),
-       (2, '2020-02-15', 2),
-       (3, now(), 2);*/
-
 INSERT INTO menu_item (ID, NAME, PRICE, MENU_ITEM_DATE, RESTAURANT_ID)
 VALUES (1, 'pepsi', 100.0, now(), 1),
        (2, 'pizza', 150.0, now(), 1),
