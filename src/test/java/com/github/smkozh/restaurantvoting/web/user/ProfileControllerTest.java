@@ -1,7 +1,7 @@
 package com.github.smkozh.restaurantvoting.web.user;
 
 import com.github.smkozh.restaurantvoting.model.User;
-import com.github.smkozh.restaurantvoting.repository.user.UserRepository;
+import com.github.smkozh.restaurantvoting.repository.UserRepository;
 import com.github.smkozh.restaurantvoting.to.UserTo;
 import com.github.smkozh.restaurantvoting.util.JsonUtil;
 import com.github.smkozh.restaurantvoting.util.UserUtil;

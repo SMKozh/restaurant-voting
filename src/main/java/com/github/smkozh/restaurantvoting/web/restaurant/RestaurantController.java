@@ -1,7 +1,7 @@
 package com.github.smkozh.restaurantvoting.web.restaurant;
 
 import com.github.smkozh.restaurantvoting.model.Restaurant;
-import com.github.smkozh.restaurantvoting.repository.restaurant.CrudRestaurantRepository;
+import com.github.smkozh.restaurantvoting.repository.RestaurantRepository;
 import com.github.smkozh.restaurantvoting.util.validation.ValidationUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class RestaurantController {
     static final String REST_URL = "/api/restaurants";
 
     @Autowired
-    protected CrudRestaurantRepository repository;
+    protected RestaurantRepository repository;
 
     @GetMapping
     public List<Restaurant> getAll() {

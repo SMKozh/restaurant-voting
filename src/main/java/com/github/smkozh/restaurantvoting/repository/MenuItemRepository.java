@@ -1,4 +1,4 @@
-package com.github.smkozh.restaurantvoting.repository.menuitem;
+package com.github.smkozh.restaurantvoting.repository;
 
 import com.github.smkozh.restaurantvoting.model.MenuItem;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Transactional(readOnly = true)
-public interface CrudMenuItemRepository extends JpaRepository<MenuItem, Integer> {
+public interface MenuItemRepository extends JpaRepository<MenuItem, Integer> {
 
     @Modifying
     @Transactional

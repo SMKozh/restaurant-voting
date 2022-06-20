@@ -1,4 +1,4 @@
-package com.github.smkozh.restaurantvoting.repository.restaurant;
+package com.github.smkozh.restaurantvoting.repository;
 
 import com.github.smkozh.restaurantvoting.model.Restaurant;
 import org.springframework.data.jpa.repository.EntityGraph;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Transactional(readOnly = true)
-public interface CrudRestaurantRepository extends JpaRepository<Restaurant, Integer> {
+public interface RestaurantRepository extends JpaRepository<Restaurant, Integer> {
 
     @Transactional
     @Modifying

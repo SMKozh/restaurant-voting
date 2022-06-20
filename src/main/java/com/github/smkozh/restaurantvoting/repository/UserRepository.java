@@ -1,4 +1,4 @@
-package com.github.smkozh.restaurantvoting.repository.user;
+package com.github.smkozh.restaurantvoting.repository;
 
 import com.github.smkozh.restaurantvoting.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;

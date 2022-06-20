@@ -1,7 +1,7 @@
 package com.github.smkozh.restaurantvoting.web.user;
 
 import com.github.smkozh.restaurantvoting.model.User;
-import com.github.smkozh.restaurantvoting.repository.user.UserRepository;
+import com.github.smkozh.restaurantvoting.repository.UserRepository;
 import com.github.smkozh.restaurantvoting.util.UserUtil;
 import com.github.smkozh.restaurantvoting.util.validation.ValidationUtil;
 import lombok.extern.slf4j.Slf4j;

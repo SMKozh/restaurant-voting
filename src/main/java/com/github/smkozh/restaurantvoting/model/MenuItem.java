@@ -11,6 +11,7 @@ import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
@@ -24,7 +25,7 @@ public class MenuItem extends AbstractNamedEntity implements HasId {
     @Column(name = "price", nullable = false)
     @NotNull
     @Range(min = 10, max = 20000)
-    private Double price;
+    private BigDecimal price;
 
     @Column(name = "menu_item_date", nullable = false)
     @NotNull
@@ -38,7 +39,7 @@ public class MenuItem extends AbstractNamedEntity implements HasId {
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Restaurant restaurant;
 
-    public MenuItem(Integer id, String name, Double price, LocalDate date) {
+    public MenuItem(Integer id, String name, BigDecimal price, LocalDate date) {
         super(id, name);
         this.price = price;
         this.date = date;

@@ -1,7 +1,7 @@
 package com.github.smkozh.restaurantvoting.web.menuitem;
 
 import com.github.smkozh.restaurantvoting.model.MenuItem;
-import com.github.smkozh.restaurantvoting.repository.menuitem.CrudMenuItemRepository;
+import com.github.smkozh.restaurantvoting.repository.MenuItemRepository;
 import com.github.smkozh.restaurantvoting.util.JsonUtil;
 import com.github.smkozh.restaurantvoting.web.AbstractControllerTest;
 import org.junit.jupiter.api.Test;
@@ -26,7 +26,7 @@ class AdminMenuItemControllerTest extends AbstractControllerTest {
     private static final int restaurantId = 2;
 
     @Autowired
-    private CrudMenuItemRepository repository;
+    private MenuItemRepository repository;
 
     @Test
     @WithUserDetails(value = ADMIN_MAIL)

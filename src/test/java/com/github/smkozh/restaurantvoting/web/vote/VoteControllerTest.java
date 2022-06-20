@@ -1,7 +1,7 @@
 package com.github.smkozh.restaurantvoting.web.vote;
 
 import com.github.smkozh.restaurantvoting.model.Vote;
-import com.github.smkozh.restaurantvoting.repository.vote.CrudVoteRepository;
+import com.github.smkozh.restaurantvoting.repository.VoteRepository;
 import com.github.smkozh.restaurantvoting.service.VoteService;
 import com.github.smkozh.restaurantvoting.web.AbstractControllerTest;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
 
 import static com.github.smkozh.restaurantvoting.web.restaurant.RestaurantTestData.restaurant1;
 import static com.github.smkozh.restaurantvoting.web.restaurant.RestaurantTestData.restaurant3;
@@ -30,7 +29,7 @@ class VoteControllerTest extends AbstractControllerTest {
     private final LocalTime DEADLINE = LocalTime.of(11, 0);
 
     @Autowired
-    private CrudVoteRepository crudVoteRepository;
+    private VoteRepository voteRepository;
 
     @Autowired
     private VoteService service;
@@ -47,7 +46,7 @@ class VoteControllerTest extends AbstractControllerTest {
         int newId = created.id();
         newVote.setId(newId);
         VOTE_MATCHER.assertMatch(created, newVote);
-        VOTE_MATCHER.assertMatch(crudVoteRepository.findById(newId).orElse(null), newVote);
+        VOTE_MATCHER.assertMatch(voteRepository.findById(newId).orElse(null), newVote);
     }
 
     @Test
@@ -63,7 +62,7 @@ class VoteControllerTest extends AbstractControllerTest {
     @Test
     @WithUserDetails(value = USER_MAIL)
     void updateAfterDeadline() throws Exception {
-        VoteService.setDeadLine(LocalTime.now().minus(5, ChronoUnit.MINUTES));
+        VoteService.setDeadLine(LocalTime.MIN);
         Vote updatedVote = VoteTestData.getUpdated();
 
         perform(MockMvcRequestBuilders.put(REST_URL)
@@ -77,7 +76,7 @@ class VoteControllerTest extends AbstractControllerTest {
     @Test
     @WithUserDetails(value = USER_MAIL)
     void updateBeforeDeadline() throws Exception {
-        VoteService.setDeadLine(LocalTime.now().plus(5, ChronoUnit.MINUTES));
+        VoteService.setDeadLine(LocalTime.MAX);
         Vote updatedVote = VoteTestData.getUpdated();
 
         perform(MockMvcRequestBuilders.put(REST_URL)

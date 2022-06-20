@@ -1,8 +1,8 @@
 package com.github.smkozh.restaurantvoting.web.menuitem;
 
 import com.github.smkozh.restaurantvoting.model.MenuItem;
-import com.github.smkozh.restaurantvoting.repository.menuitem.CrudMenuItemRepository;
-import com.github.smkozh.restaurantvoting.repository.restaurant.CrudRestaurantRepository;
+import com.github.smkozh.restaurantvoting.repository.MenuItemRepository;
+import com.github.smkozh.restaurantvoting.repository.RestaurantRepository;
 import com.github.smkozh.restaurantvoting.util.validation.ValidationUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +28,10 @@ public class AdminMenuItemController {
     static final String REST_URL = "/api/admin/restaurants/{restaurantId}/menuItems";
 
     @Autowired
-    private CrudMenuItemRepository repository;
+    private MenuItemRepository repository;
 
     @Autowired
-    private CrudRestaurantRepository crudRestaurantRepository;
+    private RestaurantRepository restaurantRepository;
 
     @GetMapping
     public List<MenuItem> getAll(@PathVariable int restaurantId) {
@@ -82,7 +82,7 @@ public class AdminMenuItemController {
         if (!menuItem.isNew() && get(menuItem.id(), restaurantId) == null) {
             return null;
         }
-        menuItem.setRestaurant(crudRestaurantRepository.findById(restaurantId)
+        menuItem.setRestaurant(restaurantRepository.findById(restaurantId)
                 .orElseThrow(() -> new EntityNotFoundException("Restaurant with id = " + restaurantId + " not found")));
         return repository.save(menuItem);
     }

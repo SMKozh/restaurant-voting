@@ -1,7 +1,7 @@
 package com.github.smkozh.restaurantvoting.web.user;
 
 import com.github.smkozh.restaurantvoting.HasIdAndEmail;
-import com.github.smkozh.restaurantvoting.repository.user.UserRepository;
+import com.github.smkozh.restaurantvoting.repository.UserRepository;
 import com.github.smkozh.restaurantvoting.web.GlobalExceptionHandler;
 import com.github.smkozh.restaurantvoting.web.SecurityUtil;
 import lombok.AllArgsConstructor;

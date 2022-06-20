@@ -2,9 +2,9 @@ package com.github.smkozh.restaurantvoting.service;
 
 import com.github.smkozh.restaurantvoting.error.IllegalRequestDataException;
 import com.github.smkozh.restaurantvoting.model.Vote;
-import com.github.smkozh.restaurantvoting.repository.restaurant.CrudRestaurantRepository;
-import com.github.smkozh.restaurantvoting.repository.user.UserRepository;
-import com.github.smkozh.restaurantvoting.repository.vote.CrudVoteRepository;
+import com.github.smkozh.restaurantvoting.repository.RestaurantRepository;
+import com.github.smkozh.restaurantvoting.repository.UserRepository;
+import com.github.smkozh.restaurantvoting.repository.VoteRepository;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -21,13 +21,13 @@ import java.time.LocalTime;
 public class VoteService {
 
     @Autowired
-    protected CrudVoteRepository repository;
+    protected VoteRepository repository;
 
     @Autowired
     protected UserRepository userRepository;
 
     @Autowired
-    protected CrudRestaurantRepository restaurantRepository;
+    protected RestaurantRepository restaurantRepository;
 
     @Setter
     @Getter

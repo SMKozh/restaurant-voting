@@ -1,7 +1,7 @@
 package com.github.smkozh.restaurantvoting.web.restaurant;
 
 import com.github.smkozh.restaurantvoting.model.Restaurant;
-import com.github.smkozh.restaurantvoting.repository.restaurant.CrudRestaurantRepository;
+import com.github.smkozh.restaurantvoting.repository.RestaurantRepository;
 import com.github.smkozh.restaurantvoting.util.JsonUtil;
 import com.github.smkozh.restaurantvoting.web.AbstractControllerTest;
 import org.junit.jupiter.api.Assertions;
@@ -25,7 +25,7 @@ class AdminRestaurantControllerTest extends AbstractControllerTest {
     private static final String REST_URL = AdminRestaurantController.REST_URL + "/";
 
     @Autowired
-    private CrudRestaurantRepository repository;
+    private RestaurantRepository repository;
 
     @Test
     @WithUserDetails(value = USER_MAIL)

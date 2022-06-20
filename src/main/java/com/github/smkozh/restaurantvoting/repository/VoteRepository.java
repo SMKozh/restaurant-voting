@@ -1,4 +1,4 @@
-package com.github.smkozh.restaurantvoting.repository.vote;
+package com.github.smkozh.restaurantvoting.repository;
 
 import com.github.smkozh.restaurantvoting.model.Vote;
 import org.springframework.data.jpa.repository.EntityGraph;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Transactional(readOnly = true)
-public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
+public interface VoteRepository extends JpaRepository<Vote, Integer> {
 
     @EntityGraph(attributePaths = "restaurant", type = EntityGraph.EntityGraphType.LOAD)
     Optional<Vote> findByDateAndUserId(LocalDate date, int userId);

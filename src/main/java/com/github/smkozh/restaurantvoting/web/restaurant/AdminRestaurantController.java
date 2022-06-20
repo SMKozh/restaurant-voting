@@ -1,7 +1,7 @@
 package com.github.smkozh.restaurantvoting.web.restaurant;
 
 import com.github.smkozh.restaurantvoting.model.Restaurant;
-import com.github.smkozh.restaurantvoting.repository.restaurant.CrudRestaurantRepository;
+import com.github.smkozh.restaurantvoting.repository.RestaurantRepository;
 import com.github.smkozh.restaurantvoting.util.validation.ValidationUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class AdminRestaurantController {
     static final String REST_URL = "/api/admin/restaurants";
 
     @Autowired
-    protected CrudRestaurantRepository repository;
+    protected RestaurantRepository repository;
 
     @GetMapping("/{id}/with-menuItems")
     public Restaurant getWithMenuItemsByDate(@PathVariable int id, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
